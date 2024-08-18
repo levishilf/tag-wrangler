@@ -34,8 +34,8 @@ export default class TagWrangler extends Plugin {
         let file = tp_evt.file && await tp_evt.file;
         if (!file) {
             const baseName = new Tag(tagName).name.split("/").join(" ");
-            const folder = this.app.fileManager.getNewFileParent(this.app.workspace.getActiveFile()?.path || "");
-            const path = this.app.vault.getAvailablePath(folder.getParentPrefix()+baseName, "md");
+            const folder =  "/TagPages/" + tagName + "/";
+            const path = folder + baseName + ".md";
             file = await this.app.vault.create(path, [
                 "---",
                 `Aliases: [ ${JSON.stringify(Tag.toTag(tagName))} ]`,
